@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生まれてからの日数計算</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>生まれてからの日数を計算</h2>
+        <div class="form-group">
+            <label for="birthYear">誕生日 (年):</label>
+            <input type="number" id="birthYear" required>
+        </div>
+        <div class="form-group">
+            <label for="birthMonth">誕生日 (月):</label>
+            <input type="number" id="birthMonth" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDay">誕生日 (日):</label>
+            <input type="number" id="birthDay" required>
+        </div>
+        <div class="form-group">
+            <label for="currentYear">今日 (年):</label>
+            <input type="number" id="currentYear" required>
+        </div>
+        <div class="form-group">
+            <label for="currentMonth">今日 (月):</label>
+            <input type="number" id="currentMonth" required>
+        </div>
+        <div class="form-group">
+            <label for="currentDay">今日 (日):</label>
+            <input type="number" id="currentDay" required>
+        </div>
+        <button onclick="calculateDays()">計算する</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateDays() {
+            const birthYear = document.getElementById('birthYear').value;
+            const birthMonth = document.getElementById('birthMonth').value;
+            const birthDay = document.getElementById('birthDay').value;
+            const currentYear = document.getElementById('currentYear').value;
+            const currentMonth = document.getElementById('currentMonth').value;
+            const currentDay = document.getElementById('currentDay').value;
+
+            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+            const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
+
+            const timeDifference = currentDate - birthDate;
+            const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('result').innerText = `生まれてから ${daysDifference} 日です。`;
+        }
+    </script>
+</body>
+</html>
